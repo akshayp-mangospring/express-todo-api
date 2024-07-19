@@ -4,7 +4,6 @@ const express = require('express');
 const cors = require('cors');
 const { parsed: { PORT } } = dotEnv;
 const db = require('./config/db');
-const UserModel = require('./models/User');
 const registrationRoutes = require('./config/router/registration');
 const authenticateJWT = require('./middlewares/auth');
 const todolistRoutes = require('./config/router/todolist');
@@ -17,7 +16,7 @@ const initDb = async () => {
     console.log('Connection has been established successfully.');
 
     console.log('Started running migrations.');
-    await UserModel.sync();
+    await db.sync();
     console.log('Migrations ran successfully.');
   } catch (err) {
     console.error('Unable to connect to the database: ', err);
