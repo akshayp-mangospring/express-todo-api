@@ -1,6 +1,6 @@
 const TodoList = require('../models/Todolist');
 const TodoListItem = require('../models/TodoListItem');
-const isUndefined = v => v === undefined;
+const { isUndefined } = require('../utils');
 
 // Create Todo List Item
 const createTodoListItem = async (req, res) => {

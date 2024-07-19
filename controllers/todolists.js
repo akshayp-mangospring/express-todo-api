@@ -1,6 +1,7 @@
 const TodoList = require('../models/Todolist');
 const TodoListItem = require('../models/TodoListItem');
 const User = require('../models/User');
+const { isUndefined } = require('../utils');
 
 // Create Todo List
 const createTodoList = async (req, res) => {
@@ -66,8 +67,8 @@ const editTodoList = async (req, res) => {
       return res.status(404).json({ error: 'Todo list not found' });
     }
 
-    todoList.title = title || todoList.title;
-    todoList.description = description || todoList.description;
+    todoList.title = isUndefined(title) ? todoList.title : title;
+    todoList.description = isUndefined(description) ? todoList.description : description;
     await todoList.save();
 
     return res.status(200).json(todoList);
